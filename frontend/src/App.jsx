@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import SubmitHealthData from './components/SubmitHealthData';
-import ViewCommunityInsights from './components/ViewCommunityInsights';
+import CommunityInsights from './components/CommunityInsights';
+
+
 
 
 function App() {
@@ -12,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/submit" element={<SubmitHealthData />} />
-          <Route path="/insights" element={<ViewCommunityInsights />} />
+          <Route path="/insights" element={<CommunityInsights/>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
