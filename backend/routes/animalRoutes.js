@@ -17,40 +17,51 @@
 
 const express = require("express");
 const AnimalHealth = require("../models/AnimalHealth");
+
 const router = express.Router();
 
+// CREATE animal health data
 router.post("/", async (req, res) => {
   try {
-    console.log("Received animal data:", req.body);
-    
-    // Validate required fields
-    if (!req.body.ageGroup || !req.body.healthStatus || !req.body.animalType) {
-      return res.status(400).json({ error: "Age group, health status, and animal type are required" });
+    const { animalType, ageGroup, healthStatus, symptoms, notes } = req.body;
+
+    if (!animalType || !ageGroup || !healthStatus) {
+      return res.status(400).json({
+        success: false,
+        message: "animalType, ageGroup, and healthStatus are required",
+      });
     }
 
-    const data = await AnimalHealth.create(req.body);
-    console.log("Saved to MongoDB:", data);
-    res.status(201).json({ 
-      success: true, 
+    const data = await AnimalHealth.create({
+      animalType,
+      ageGroup,
+      healthStatus,
+      symptoms: Array.isArray(symptoms) ? symptoms : [],
+      notes,
+    });
+
+    res.status(201).json({
+      success: true,
       message: "Animal health data saved successfully",
-      data: data 
+      data,
     });
   } catch (error) {
-    console.error("Error saving animal data:", error);
-    res.status(500).json({ 
-      error: "Failed to save animal health data",
-      details: error.message 
+    console.error("Animal save error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to save animal health data",
     });
   }
 });
 
+// GET all animal health data
 router.get("/", async (req, res) => {
   try {
-    const data = await AnimalHealth.find();
+    const data = await AnimalHealth.find().sort({ createdAt: -1 });
     res.json(data);
   } catch (error) {
-    console.error("Error fetching animal data:", error);
-    res.status(500).json({ error: error.message });
+    console.error("Animal fetch error:", error);
+    res.status(500).json({ message: "Failed to fetch animal data" });
   }
 });
 

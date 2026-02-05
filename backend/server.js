@@ -13,6 +13,6 @@ app.use(express.json());
 app.use("/api/humans", require("./routes/humanRoutes"));
 app.use("/api/animals", require("./routes/animalRoutes"));
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000 🚀");
+app.listen(5001, () => {
+  console.log("Server running on port 5001 🚀");
 });
