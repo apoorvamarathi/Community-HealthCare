@@ -93,7 +93,6 @@ const CommunityInsights = () => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
         @keyframes pulse {
           0% { transform: scale(1); }
           50% { transform: scale(1.05); }
@@ -352,7 +351,6 @@ const CommunityInsights = () => {
                   </div>
                 )}
               </div>
-
               {/* Symptoms and Age Groups - REAL DATA */}
               <div style={styles.chartsGrid}>
                 <div style={{
