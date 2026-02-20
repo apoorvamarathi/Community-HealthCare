@@ -96,7 +96,7 @@ Through this project, I strengthened:
 
 ### Clone the repository
 
-git clone https://github.com/yourusername/repository-name.git
+git clone https://github.com/apoorvamarathi/Community-HealthCare.git
 
 ### Install dependencies
 
